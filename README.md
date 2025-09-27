@@ -1,8 +1,43 @@
-# Getting Started with Create React App
+# Tiffin Planner App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A web application for managing tiffin meal plans with friends. Built with MERN stack (MongoDB, Express.js, React, Node.js).
 
-## Available Scripts
+## Features
+
+- User authentication (login/register)
+- Weekly meal planning (lunch/dinner)
+- Cost calculation
+- View friends' meal plans
+- IST timezone support
+
+## Tech Stack
+
+- Frontend: React, Tailwind CSS
+- Backend: Node.js, Express.js
+- Database: MongoDB
+- Authentication: JWT
+
+## Setup
+
+### Prerequisites
+
+- Node.js
+- MongoDB
+- npm or yarn
+
+### Environment Variables
+
+#### Backend (.env)
+```
+PORT=5000
+MONGO_URI=your_mongodb_uri
+JWT_SECRET=your_jwt_secret
+```
+
+#### Frontend (.env)
+```
+REACT_APP_API_URL=your_api_url
+```
 
 In the project directory, you can run:
 
