@@ -208,6 +208,19 @@ export default function Dashboard(){
         <div>
           <h4 className="font-semibold mb-2">Friends' Plans</h4>
           {users.filter(u=>u.email).map(u=>renderPlanForUser(u))}
+          <div className="mt-4 p-4 bg-blue-50 rounded-xl border border-blue-100">
+            <div className="text-lg font-semibold">Group Summary</div>
+            <div className="flex flex-wrap gap-4 mt-2">
+              <div className="bg-white px-4 py-2 rounded-lg border">
+                <div className="text-sm text-gray-600">Your Total</div>
+                <div className="font-medium">₹{myTotal}</div>
+              </div>
+              <div className="bg-white px-4 py-2 rounded-lg border">
+                <div className="text-sm text-gray-600">Group Total</div>
+                <div className="font-medium">₹{plans.reduce((sum, p) => sum + p.total, 0)}</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
