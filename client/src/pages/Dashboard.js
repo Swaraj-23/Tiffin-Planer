@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import API from '../api';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function getThisWeekMondayISO(offsetWeeks=0){
   // Create date in IST
@@ -56,7 +58,7 @@ export default function Dashboard(){
       setMyTotal(mRes.data.total || 0);
     }catch(err){
       console.error(err);
-      alert('Failed to load data');
+      toast.error('Failed to load data');
     }
   }
 
@@ -84,10 +86,10 @@ export default function Dashboard(){
       const pRes = await API.get(`/api/plans/week/${weekStart}`);
       setPlans(pRes.data);
       
-      alert('Plan saved successfully!');
+      toast.success('Plan saved successfully!');
     }catch(err){
       console.error(err);
-      alert(err.response?.data?.error || 'Save failed');
+      toast.error(err.response?.data?.error || 'Save failed');
     }
   }
 
@@ -124,6 +126,18 @@ export default function Dashboard(){
 
   return (
     <div className="p-4 max-w-2xl mx-auto">
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <div className="flex justify-between items-center mb-4">
         <h3 className="text-xl font-bold">Tiffin Planner</h3>
         <button 

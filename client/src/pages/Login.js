@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import API from '../api';
 import { useNavigate, Link } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Login(){
   const [email,setEmail]=useState('');
@@ -8,7 +10,7 @@ export default function Login(){
   const nav = useNavigate();
   async function submit(e){
     e.preventDefault();
-    try{
+    try {
       // Clear any existing token first
       localStorage.clear();
       
@@ -20,13 +22,25 @@ export default function Login(){
       
       // Navigate and force a page reload to ensure clean state
       window.location.href = '/';
-    }catch(err){
+    } catch(err) {
       console.error(err);
-      alert(err.response?.data?.error || 'Login failed');
+      toast.error(err.response?.data?.error || 'Login failed');
     }
   }
   return (
     <div className="p-5 max-w-md mx-auto mt-10">
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <h2 className="text-2xl font-bold mb-4">Login</h2>
       <form onSubmit={submit}>
         <input value={email} onChange={e=>setEmail(e.target.value)} placeholder="Email" className="w-full p-2 mb-3 border rounded" />
