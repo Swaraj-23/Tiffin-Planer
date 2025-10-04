@@ -79,6 +79,11 @@ export default function Dashboard(){
       const { data } = await API.post('/api/plans', payload);
       setMyPlan(data.plan);
       setMyTotal(data.total);
+      
+      // Reload all plans to update friends' section
+      const pRes = await API.get(`/api/plans/week/${weekStart}`);
+      setPlans(pRes.data);
+      
       alert('Plan saved successfully!');
     }catch(err){
       console.error(err);
